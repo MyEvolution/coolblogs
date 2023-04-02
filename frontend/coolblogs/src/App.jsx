@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
-import './App.css';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './routes/Home';
+import Create from './routes/Create';
+import EditBlog from './routes/EditBlog';
+import SingleBlog from './routes/SingleBlog';
+import NotFound from './routes/NotFound';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
-      <p>Hello</p>
+      <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="/blog/:id/edit" element={<EditBlog />} />
+        <Route path="/blog/:id" element={<SingleBlog />} />
+      </Routes>
     </div>
   );
 }

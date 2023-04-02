@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 const express = require('express');
 const fs = require('fs');
 const cors = require('cors');
