@@ -15,6 +15,12 @@ module.exports = {
     'import/no-unresolved': ['off'],
     'import/extensions': ['off'],
     'react/prop-types': ['off'],
-    'prettier/prettier': ['error'],
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
+    'linebreak-style': 0,
   },
 };
