@@ -27,8 +27,8 @@ function Create() {
     try {
       const url = 'http://localhost:3001/v1/api/posts';
       const response = await axios.post(url, {
-        title: { title },
-        content: { body },
+        title,
+        content: body,
       });
       console.log(response.data);
     } catch (error) {
