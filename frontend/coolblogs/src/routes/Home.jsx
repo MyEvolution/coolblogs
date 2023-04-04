@@ -13,6 +13,7 @@ function Home() {
         return (
           <div key={post.id}>
             <p>{post.title}</p>
+            <p>{post.content}</p>
           </div>
         );
       })}
