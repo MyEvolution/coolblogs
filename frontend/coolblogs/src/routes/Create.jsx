@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import {
   Button,
   Center,
@@ -11,29 +10,23 @@ import {
   Textarea,
   Input,
 } from '@chakra-ui/react';
+import useGlobalReducer from '../utils/useGlobalReducer';
 
 function Create() {
   const [title, setTitle] = useState('Default Title!');
   const [body, setBody] = useState('');
+  /*
+    Steps to use:
+    1. Destructure the state and the function to post a blog from the custom hook
+    2. parameter = (postId, title, content) order matters, if you don't need a parameter, pass in null,
+    3. Call the function to post a blog
+  */
+
+  const { postBlog } = useGlobalReducer(null, title, body);
 
   const handleInputChange = (e, value) => {
     const inputValue = e.target.value;
     if (value === 'title' ? setTitle(inputValue) : setBody(inputValue));
-  };
-
-  const postBlog = async (e) => {
-    e.preventDefault();
-
-    try {
-      const url = 'http://localhost:3001/v1/api/posts';
-      const response = await axios.post(url, {
-        title: { title },
-        content: { body },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
