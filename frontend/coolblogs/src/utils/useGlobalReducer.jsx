@@ -28,6 +28,7 @@ const useGlobalReducer = (postId, title, content) => {
   const getSingleBlogPost = async () => {
     try {
       const url = `http://localhost:3001/v1/api/posts/${postId}`;
+      console.log(url);
       const response = await axios.get(url);
       dispatch({ type: 'getCurrentPost', payload: response.data });
     } catch (error) {
