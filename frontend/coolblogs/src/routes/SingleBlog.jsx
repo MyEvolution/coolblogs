@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { Button, Stack, Center } from '@chakra-ui/react';
 import useGlobalReducer from '../utils/useGlobalReducer';
 
 function SingleBlog() {
   const useParam = useParams();
-
   const { state, getSingleBlogPost } = useGlobalReducer(useParam.id);
 
   useEffect(() => {
@@ -25,6 +25,18 @@ function SingleBlog() {
           {state.currentPost.content}
         </p>
       </div>
+      <Center margin={5}>
+        <Stack spacing={4} direction="row">
+          <Link to={`/blog/${useParam.id}/edit`}>
+            <Button colorScheme="blackAlpha" width={20}>
+              Edit
+            </Button>
+          </Link>
+          <Button colorScheme="blackAlpha" width={20}>
+            Delete
+          </Button>
+        </Stack>
+      </Center>
     </div>
   );
 }
