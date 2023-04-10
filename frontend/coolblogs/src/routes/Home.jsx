@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import { Button } from '@chakra-ui/react';
 import useGlobalReducer from '../utils/useGlobalReducer';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 function Home() {
   const { state, getAllBlogPosts } = useGlobalReducer();
@@ -15,7 +13,6 @@ function Home() {
 
   return (
     <div>
-      <Header />
       {/* <Button onClick={getAllBlogPosts}>Get Posts</Button> */}
       {state.allPosts.map((post) => {
         return (
@@ -34,7 +31,6 @@ function Home() {
           </Link>
         );
       })}
-      <Footer />
     </div>
   );
 }

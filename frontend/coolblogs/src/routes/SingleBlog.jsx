@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import useGlobalReducer from '../utils/useGlobalReducer';
 
 function SingleBlog() {
-  const { state, getSingleBlogPost } = useGlobalReducer();
+  const useParam = useParams();
+
+  const { state, getSingleBlogPost } = useGlobalReducer(useParam.id);
 
   useEffect(() => {
     getSingleBlogPost();
@@ -11,8 +14,17 @@ function SingleBlog() {
 
   return (
     <div>
-      {console.log(state.currentPost.title)}
-      <p>{state.currentPost.title}</p>
+      <div
+        className="bg-black w-1/3 mx-auto rounded-lg mt-5"
+        key={state.currentPost.id}
+      >
+        <p className="text-white text-center text-2xl p-5 font-mono">
+          {state.currentPost.title}
+        </p>
+        <p className="text-white text-center p-3 font-mono">
+          {state.currentPost.content}
+        </p>
+      </div>
     </div>
   );
 }

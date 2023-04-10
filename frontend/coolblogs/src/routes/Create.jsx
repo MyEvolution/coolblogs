@@ -30,29 +30,41 @@ function Create() {
   };
 
   return (
-    <Center className="bg-slate-500" h="100vh">
-      <Flex p={{ base: 4, md: 14 }} w="100%" direction={{ base: 'column' }}>
-        <Center>
-          <Heading color="white">{title}</Heading>
-        </Center>
+    <Center className="bg-black h-screen">
+      <Flex
+        p={{ base: 4, md: 14 }}
+        w="100%"
+        direction={{ base: 'column' }}
+        justifyContent="center"
+      >
+        <Heading className="text-red-500 font-bold drop-shadow-xl stroke-white text-center">
+          Create a Blog Post!
+        </Heading>
         <Spacer mb={10} />
-        <Box>
+        <Box className="">
           <Input
-            className=" font-bold text-white text-xl"
+            className=" font-bold text-white text-xl bg-gray-800 border-red-500 border-2 outline-none"
             onChange={(e) => handleInputChange(e, 'title')}
             placeholder="Type your title here!"
           />
           <Textarea
-            className=" font-medium text-white text-xl"
+            className=" font-medium text-white text-xl bg-gray-800 border-red-500 border-2 outline-none"
             value={body}
             onChange={handleInputChange}
-            placeholder="Here is a sample placeholder"
+            placeholder="Type your blog post here!"
             size="sm"
           />
         </Box>
         <Text>
           <Spacer mb={10} />
-          <Button onClick={postBlog}> Submit! </Button>
+          <Button
+            onClick={postBlog}
+            className="text-red-500 bg-opacity-50 bg-gray-900 border-2 border-red-500 hover:text-black hover:bg-red-500"
+            bg="gray.900"
+          >
+            {' '}
+            Submit!{' '}
+          </Button>
         </Text>
       </Flex>
     </Center>
