@@ -10,18 +10,31 @@ import {
   Textarea,
   Input,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useGlobalReducer from '../utils/useGlobalReducer';
 
 function Create() {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [blogTitle, setBlogTitle] = useState('');
+  const [blogContent, setBlogContent] = useState('');
+  const useParam = useParams();
+  const { patchBlogPost } = useGlobalReducer(
+    useParam.id,
+    blogTitle,
+    blogContent
+  );
 
-  const { patchBlogPost } = useGlobalReducer(null, title, body);
-
-  const handleInputChange = (e, value) => {
+  const handleTitleChange = (e, value) => {
     const inputValue = e.target.value;
-    if (value === 'title' ? setTitle(inputValue) : setBody(inputValue));
+    if (
+      value === 'title' ? setBlogTitle(inputValue) : setBlogContent(inputValue)
+    );
+  };
+
+  const handleContentChange = (e, value) => {
+    const inputValue = e.target.value;
+    if (
+      value === 'title' ? setBlogTitle(inputValue) : setBlogContent(inputValue)
+    );
   };
 
   return (
@@ -39,13 +52,13 @@ function Create() {
         <Box className="">
           <Input
             className=" font-bold text-white text-xl bg-gray-800 border-red-500 border-2 outline-none"
-            onChange={(e) => handleInputChange(e, 'title')}
+            onChange={(e) => handleTitleChange(e, 'title')}
             placeholder="Type your title here!"
           />
           <Textarea
             className=" font-medium text-white text-xl bg-gray-800 border-red-500 border-2 outline-none"
-            value={body}
-            onChange={handleInputChange}
+            value={blogContent}
+            onChange={handleContentChange}
             placeholder="Type your blog post here!"
             size="sm"
           />
