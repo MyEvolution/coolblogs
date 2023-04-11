@@ -1,62 +1,73 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Button, Center, Input } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import {
+  Button,
+  Center,
+  Box,
+  Spacer,
+  Text,
+  Heading,
+  Flex,
+  Textarea,
+  Input,
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import useGlobalReducer from '../utils/useGlobalReducer';
 
-function EditBlog() {
-  const useParam = useParams();
-  console.log(useParams());
-  const [postTitle, setPostTitle] = useState('');
-  const [postContent, setPostContent] = useState('');
-  const { state, getSingleBlogPost, patchBlogPost } = useGlobalReducer(
-    useParam.id,
-    postTitle,
-    postContent
-  );
+function Create() {
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
 
-  useEffect(() => {
-    getSingleBlogPost();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { patchBlogPost } = useGlobalReducer(null, title, body);
 
-  const titleChange = (e) => {
-    setPostTitle(e.target.value);
-  };
-
-  const contentChange = (e) => {
-    setPostContent(e.target.value);
+  const handleInputChange = (e, value) => {
+    const inputValue = e.target.value;
+    if (value === 'title' ? setTitle(inputValue) : setBody(inputValue));
   };
 
   return (
-    <div>
-      <div
-        className="bg-black w-1/3 mx-auto rounded-lg mt-5"
-        key={state.currentPost.id}
+    <Center className="bg-black h-screen">
+      <Flex
+        p={{ base: 4, md: 14 }}
+        w="100%"
+        direction={{ base: 'column' }}
+        justifyContent="center"
       >
-        <Input
-          type="text"
-          name="title"
-          onChange={titleChange}
-          value={postTitle}
-          className="text-white text-center text-2xl p-5 font-mono focus:outline-0 outline-0"
-        />
-        <Input
-          type="text"
-          name="content"
-          onChange={contentChange}
-          value={postContent}
-          className="text-white text-center text-2xl p-5 font-mono focus:outline-0 outline-0"
-        />
-      </div>
-      <Center margin={5}>
-        <Link to="/">
-          <Button onClick={patchBlogPost} colorScheme="blackAlpha">
-            Post
-          </Button>
-        </Link>
-      </Center>
-    </div>
+        <Heading className="text-red-500 font-bold drop-shadow-xl stroke-white text-center">
+          Edit Post
+        </Heading>
+        <Spacer mb={10} />
+        <Box className="">
+          <Input
+            className=" font-bold text-white text-xl bg-gray-800 border-red-500 border-2 outline-none"
+            onChange={(e) => handleInputChange(e, 'title')}
+            placeholder="Type your title here!"
+          />
+          <Textarea
+            className=" font-medium text-white text-xl bg-gray-800 border-red-500 border-2 outline-none"
+            value={body}
+            onChange={handleInputChange}
+            placeholder="Type your blog post here!"
+            size="sm"
+          />
+        </Box>
+        <Text>
+          <Spacer mb={10} />
+          <Center>
+            <Link to="/">
+              <Button
+                onClick={patchBlogPost}
+                className="text-red-500 bg-opacity-50 bg-gray-900 border-2 border-red-500 hover:text-black hover:bg-red-500"
+                bg="gray.900"
+              >
+                {' '}
+                Submit!{' '}
+              </Button>
+            </Link>
+          </Center>
+        </Text>
+      </Flex>
+    </Center>
   );
 }
 
-export default EditBlog;
+export default Create;
