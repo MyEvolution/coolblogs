@@ -10,6 +10,7 @@ import {
   Textarea,
   Input,
 } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import useGlobalReducer from '../utils/useGlobalReducer';
 
 function Create() {
@@ -57,14 +58,18 @@ function Create() {
         </Box>
         <Text>
           <Spacer mb={10} />
-          <Button
-            onClick={postBlog}
-            className="text-red-500 bg-opacity-50 bg-gray-900 border-2 border-red-500 hover:text-black hover:bg-red-500"
-            bg="gray.900"
-          >
-            {' '}
-            Submit!{' '}
-          </Button>
+          <Center>
+            <Link to="/">
+              <Button
+                onClick={postBlog}
+                className="text-red-500 bg-opacity-50 bg-gray-900 border-2 border-red-500 hover:text-black hover:bg-red-500"
+                bg="gray.900"
+              >
+                {' '}
+                Submit!{' '}
+              </Button>
+            </Link>
+          </Center>
         </Text>
       </Flex>
     </Center>
