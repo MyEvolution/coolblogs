@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { expect, test } from 'vitest';
 import React from 'react';
 import '@testing-library/jest-dom';

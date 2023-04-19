@@ -59,7 +59,7 @@ function Create() {
         <Text>
           <Spacer mb={10} />
           <Center>
-            <Link to="/">
+            <Link to={{ pathname: '/', key: Date.now() }}>
               <Button
                 onClick={postBlog}
                 className="text-red-500 bg-opacity-50 bg-gray-900 border-2 border-red-500 hover:text-black hover:bg-red-500"
