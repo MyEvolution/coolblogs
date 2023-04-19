@@ -13,7 +13,7 @@ import {
 import { Link, useParams } from 'react-router-dom';
 import useGlobalReducer from '../utils/useGlobalReducer';
 
-function Create() {
+function EditBlog() {
   const [blogTitle, setBlogTitle] = useState('');
   const [blogContent, setBlogContent] = useState('');
   const useParam = useParams();
@@ -83,4 +83,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default EditBlog;
