@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
-// write a test for the footer component
-// import the footer component
+/* eslint-disable import/no-extraneous-dependencies */
 
 import { describe, expect } from 'vitest';
 import React from 'react';

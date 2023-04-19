@@ -9,6 +9,7 @@ import {
   Flex,
   Textarea,
   Input,
+  useToast,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import useGlobalReducer from '../utils/useGlobalReducer';
@@ -16,6 +17,8 @@ import useGlobalReducer from '../utils/useGlobalReducer';
 function Create() {
   const [title, setTitle] = useState('Default Title!');
   const [body, setBody] = useState('');
+  const toast = useToast();
+
   /*
     Steps to use:
     1. Destructure the state and the function to post a blog from the custom hook
@@ -28,6 +31,16 @@ function Create() {
   const handleInputChange = (e, value) => {
     const inputValue = e.target.value;
     if (value === 'title' ? setTitle(inputValue) : setBody(inputValue));
+  };
+
+  const postNewBlog = (newTitle) => {
+    return toast({
+      title: `Blog Post: ${newTitle} has been created!`,
+      description: 'Your blog post has been created!',
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -59,16 +72,17 @@ function Create() {
         <Text>
           <Spacer mb={10} />
           <Center>
-            <Link to="/">
-              <Button
-                onClick={postBlog}
-                className="text-red-500 bg-opacity-50 bg-gray-900 border-2 border-red-500 hover:text-black hover:bg-red-500"
-                bg="gray.900"
-              >
-                {' '}
-                Submit!{' '}
-              </Button>
-            </Link>
+            <Button
+              onClick={() => {
+                postNewBlog(title);
+                postBlog();
+              }}
+              className="text-red-500 bg-opacity-50 bg-gray-900 border-2 border-red-500 hover:text-black hover:bg-red-500"
+              bg="gray.900"
+            >
+              {' '}
+              Submit!{' '}
+            </Button>
           </Center>
         </Text>
       </Flex>
